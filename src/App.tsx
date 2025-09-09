@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import SplashScreen from "./pages/SplashScreen";
 import OnboardingScreen from "./pages/OnboardingScreen";
 import SignUpScreen from "./pages/SignUpScreen";
@@ -64,6 +65,21 @@ import { AuthProvider } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
 
+const RouteTracker = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Store current route in localStorage, but exclude splash screen and auth routes
+    const excludedRoutes = ['/', '/onboarding', '/signup', '/login', '/welcome-login', '/forgot-password', '/verification', '/password-reset-verification', '/new-password', '/transaction-pin'];
+    
+    if (!excludedRoutes.includes(location.pathname)) {
+      localStorage.setItem('lastVisitedRoute', location.pathname + location.search);
+    }
+  }, [location]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -73,7 +89,8 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
-            <Routes>
+              <RouteTracker />
+              <Routes>
               <Route path="/" element={<SplashScreen />} />
               <Route path="/onboarding" element={<OnboardingScreen />} />
               <Route path="/signup" element={<SignUpScreen />} />

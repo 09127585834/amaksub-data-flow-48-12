@@ -12,8 +12,17 @@ const SplashScreen = () => {
       
       // Check for existing session
       if (user) {
-        // Existing user with session - go directly to dashboard
-        navigate('/dashboard');
+        // Check if there's a last visited route to restore
+        const lastVisitedRoute = localStorage.getItem('lastVisitedRoute');
+        
+        if (lastVisitedRoute) {
+          // Clear the stored route and navigate to it
+          localStorage.removeItem('lastVisitedRoute');
+          navigate(lastVisitedRoute);
+        } else {
+          // No stored route - go to dashboard
+          navigate('/dashboard');
+        }
       } else {
         // No session - check if it's a first-time user or returning user
         const hasVisitedBefore = localStorage.getItem('has_visited_before');

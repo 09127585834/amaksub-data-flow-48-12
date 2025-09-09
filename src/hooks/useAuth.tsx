@@ -122,6 +122,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    // Clear stored route when signing out
+    localStorage.removeItem('lastVisitedRoute');
     await supabase.auth.signOut();
   };
 
