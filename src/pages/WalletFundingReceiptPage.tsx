@@ -57,8 +57,8 @@ const WalletFundingReceiptPage = () => {
         { label: 'Fee:', value: '₦0.00' },
         { label: 'Description:', value: 'Account Credit By Automated Bank Transfer' },
         { label: 'Status:', value: 'Successful' },
-        { label: 'Date:', value: new Date().toLocaleDateString() },
-        { label: 'Time:', value: new Date().toLocaleTimeString() }
+        { label: 'Date:', value: transaction?.created_at ? new Date(transaction.created_at).toLocaleDateString() : 'N/A' },
+        { label: 'Time:', value: transaction?.created_at ? new Date(transaction.created_at).toLocaleTimeString() : 'N/A' }
       ];
 
       ctx.textAlign = 'left';
@@ -211,12 +211,12 @@ const WalletFundingReceiptPage = () => {
             
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Date:</span>
-              <span className="font-semibold">{new Date().toLocaleDateString()}</span>
+              <span className="font-semibold">{transaction?.created_at ? new Date(transaction.created_at).toLocaleDateString() : 'N/A'}</span>
             </div>
             
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Time:</span>
-              <span className="font-semibold">{new Date().toLocaleTimeString()}</span>
+              <span className="font-semibold">{transaction?.created_at ? new Date(transaction.created_at).toLocaleTimeString() : 'N/A'}</span>
             </div>
           </div>
 

@@ -306,7 +306,7 @@ const Dashboard = () => {
             {profileLoading ? (
               <div className="h-4 w-32 bg-gray-200 rounded animate-pulse"></div>
             ) : (
-              <p className="text-sm font-mono font-bold text-gray-800 tracking-wider" style={{ textDecoration: 'none' }}>
+              <p className="text-sm font-mono font-bold text-gray-800 tracking-wider select-none" style={{ textDecoration: 'none', userSelect: 'text' }}>
                 {getVirtualAccountNumber().replace(/(.{4})/g, '$1 ').trim()}
               </p>
             )}
