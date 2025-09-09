@@ -160,7 +160,7 @@ const DataCardPage = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/data-card-history')}
-          className="text-foreground font-medium"
+          className="text-foreground font-medium no-focus-active"
         >
           History
         </Button>
