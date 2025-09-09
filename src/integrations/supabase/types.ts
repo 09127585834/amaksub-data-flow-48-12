@@ -555,6 +555,7 @@ export type Database = {
           paystack_bank_name: string | null
           phone_number: string
           referral_code: string | null
+          reward_balance: number
           sent_otp: string | null
           transaction_pin: string
           updated_at: string
@@ -581,6 +582,7 @@ export type Database = {
           paystack_bank_name?: string | null
           phone_number: string
           referral_code?: string | null
+          reward_balance?: number
           sent_otp?: string | null
           transaction_pin: string
           updated_at?: string
@@ -607,6 +609,7 @@ export type Database = {
           paystack_bank_name?: string | null
           phone_number?: string
           referral_code?: string | null
+          reward_balance?: number
           sent_otp?: string | null
           transaction_pin?: string
           updated_at?: string
