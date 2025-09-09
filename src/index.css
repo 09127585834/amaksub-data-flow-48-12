@@ -1,0 +1,504 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary Deep Purple Fintech Theme */
+    --primary: 274 81% 26%;  /* #4B0082 Deep Purple */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 274 81% 40%;
+    --primary-light: 274 60% 80%;
+    
+    /* Royal Purple for balance section */
+    --royal-purple: 262 74% 40%;  /* #663399 Royal Purple */
+    --royal-purple-light: 262 74% 50%;
+    --royal-purple-dark: 262 74% 30%;
+    
+    /* Deep Navy Blue for card header */
+    --deep-navy: 220 91% 15%;
+    --deep-navy-light: 220 91% 25%;
+
+    /* Secondary Blue */
+    --secondary: 220 91% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 274 81% 26%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 274 81% 26%;
+
+    --radius: 1rem;
+
+    /* Fintech Glossy Effects */
+    --gradient-primary: linear-gradient(135deg, hsl(274, 81%, 26%) 0%, hsl(274, 81%, 35%) 50%, hsl(274, 81%, 40%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(220, 91%, 45%) 0%, hsl(220, 91%, 55%) 100%);
+    --gradient-depth: linear-gradient(135deg, hsl(274, 81%, 15%) 0%, hsl(274, 81%, 26%) 30%, hsl(274, 81%, 35%) 70%, hsl(274, 81%, 40%) 100%);
+    --gradient-light: linear-gradient(135deg, hsl(274, 60%, 85%) 0%, hsl(274, 40%, 95%) 50%, hsl(0, 0%, 100%) 100%);
+    
+    /* Glass/Glossy Effects */
+    --glass-shadow: 0 8px 32px hsla(274, 81%, 26%, 0.3);
+    --glass-border: 1px solid hsla(274, 81%, 60%, 0.2);
+    --glass-backdrop: hsla(274, 81%, 26%, 0.1);
+    
+    /* Fintech Shadows */
+    --shadow-soft: 0 4px 20px hsla(274, 81%, 26%, 0.15);
+    --shadow-medium: 0 8px 30px hsla(274, 81%, 26%, 0.25);
+    --shadow-strong: 0 12px 40px hsla(274, 81%, 26%, 0.35);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 274 81% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 274 81% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 274 81% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 274 81% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 91% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 274 60% 15%;
+    --muted-foreground: 274 30% 65%;
+
+    --accent: 274 81% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 274 60% 20%;
+    --input: 274 60% 20%;
+    --ring: 274 81% 40%;
+    --sidebar-background: 274 81% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 274 81% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 274 60% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 274 60% 15%;
+    --sidebar-ring: 274 81% 60%;
+  }
+}
+
+@layer base {
+  /* UNIVERSAL SCROLLBAR ELIMINATION - MAXIMUM STRENGTH */
+  * {
+    @apply border-border;
+    /* Force hide scrollbars on ALL elements */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Completely eliminate ALL webkit scrollbar components */
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  *::-webkit-scrollbar-track {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  *::-webkit-scrollbar-corner {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  *::-webkit-resizer {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  /* Apply to pseudo-elements too */
+  *::before, *::after {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  *::before::-webkit-scrollbar,
+  *::after::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+  }
+
+  /* Force root elements */
+  html {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth;
+    height: 100% !important;
+    max-height: 100vh !important;
+  }
+
+  html::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Mobile optimizations */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    
+    /* Maximum scrollbar elimination */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    
+    /* Android status bar styling to match deep purple */
+    padding-top: env(safe-area-inset-top);
+    background: hsl(274, 81%, 26%) !important;
+    
+    height: 100% !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+  }
+
+  /* Root app container */
+  #root {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+    height: 100% !important;
+    max-height: 100vh !important;
+    background: hsl(var(--background)) !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  #root::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+  }
+
+  /* Force hide on all common container classes */
+  .min-h-screen,
+  .h-screen,
+  .overflow-auto,
+  .overflow-scroll,
+  .overflow-y-auto,
+  .overflow-y-scroll,
+  .overflow-x-auto,
+  .overflow-x-scroll {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .min-h-screen::-webkit-scrollbar,
+  .h-screen::-webkit-scrollbar,
+  .overflow-auto::-webkit-scrollbar,
+  .overflow-scroll::-webkit-scrollbar,
+  .overflow-y-auto::-webkit-scrollbar,
+  .overflow-y-scroll::-webkit-scrollbar,
+  .overflow-x-auto::-webkit-scrollbar,
+  .overflow-x-scroll::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+  }
+
+  /* Remove underlines from all text elements when tapped */
+  * {
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+  }
+
+  /* Prevent text highlighting and underlines on tap */
+  *:focus,
+  *:active,
+  *:hover {
+    text-decoration: none !important;
+    outline: none !important;
+  }
+}
+
+@layer utilities {
+  /* Remove all focus/active/hover states that cause contrast issues */
+  .no-focus-active,
+  .no-focus-active:hover,
+  .no-focus-active:focus,
+  .no-focus-active:active,
+  .no-focus-active:focus-visible {
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    ring: none !important;
+    --tw-ring-shadow: none !important;
+    --tw-ring-offset-shadow: none !important;
+    --tw-ring-offset-color: transparent !important;
+  }
+
+  .fintech-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .fintech-depth {
+    background: var(--gradient-depth);
+  }
+  
+  .fintech-light {
+    background: var(--gradient-light);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .fintech-glossy {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .fintech-glossy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: glossy-shine 2s infinite;
+  }
+
+  .white-glossy {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 30%, #ffffff 70%, #f5f7fa 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+    position: relative;
+    overflow: hidden;
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  .white-glossy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    animation: glossy-shine 2s infinite;
+  }
+  
+  .fintech-button {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 1rem 2rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .fintech-button:hover {
+    box-shadow: var(--shadow-strong);
+    transform: translateY(-2px);
+  }
+  
+  .fintech-button:active {
+    transform: translateY(0);
+  }
+  
+  .no-focus-outline input:focus,
+  .no-focus-outline textarea:focus,
+  .no-focus-outline select:focus {
+    outline: none !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+  }
+  
+  .smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Royal Purple Balance Section - Clean Without Water Effect */
+  .royal-purple-simple {
+    background: hsl(var(--royal-purple));
+    position: relative;
+  }
+  
+  /* ATM Card Styles */
+  .atm-card {
+    background: linear-gradient(135deg, 
+      hsl(262, 74%, 30%) 0%, 
+      hsl(262, 74%, 40%) 50%, 
+      hsl(262, 74%, 35%) 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px hsla(262, 74%, 30%, 0.4);
+  }
+  
+  .atm-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+      hsla(262, 74%, 60%, 0.1) 0%, 
+      transparent 70%);
+    animation: card-shimmer 3s ease-in-out infinite;
+  }
+  
+  /* Deep Navy Capsule Header */
+  .navy-capsule {
+    background: linear-gradient(135deg, 
+      hsl(var(--deep-navy)) 0%, 
+      hsl(var(--deep-navy-light)) 100%);
+    border-radius: 2rem 2rem 0 0;
+  }
+}
+
+@keyframes glossy-shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-shimmer {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes water-flow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-shimmer-slow {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+  background-size: 200% 200%;
+}

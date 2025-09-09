@@ -1,0 +1,26 @@
+{
+  "name": "Amaksub Data",
+  "short_name": "Amaksub Data",
+  "description": "Cheap Data, Airtime & Bills Payment in Nigeria",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#4B0082",
+  "background_color": "#4B0082",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "permissions": [
+    "android.permission.READ_CONTACTS",
+    "android.permission.WRITE_CONTACTS"
+  ]
+}
