@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           username: userData.username,
           full_name: userData.fullName || userData.full_name,
           phone_number: userData.phoneNumber || userData.phone_number,
-          referral_code: userData.referralCode,
+          referral_code: userData.username,
           transaction_pin: userData.transaction_pin || '',
           password_hash: '', // This will be handled by auth
           paystack_account_number: userData.paystack_account_number,
