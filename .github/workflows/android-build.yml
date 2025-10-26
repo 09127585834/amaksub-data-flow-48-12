@@ -27,7 +27,7 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
       - name: Install Android SDK packages
-        uses: android-actions/setup-android@v4
+        uses: android-actions/setup-android@v3
         with:
           api-level: ${{ env.ANDROID_COMPILE_SDK }}
           build-tools: 33.0.2
