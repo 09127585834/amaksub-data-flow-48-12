@@ -1,0 +1,44 @@
+name: Android Release APK
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_COMPILE_SDK: 33
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Decode keystore
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > ./keystore.jks
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      - name: Install Android SDK packages
+        uses: android-actions/setup-android@v4
+        with:
+          api-level: ${{ env.ANDROID_COMPILE_SDK }}
+          build-tools: 33.0.2
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
+      - name: Build release APK
+        working-directory: android
+        run: |
+          cat > gradle.properties <<EOF
+          MY_KEYSTORE_PATH=../keystore.jks
+          MY_KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}
+          MY_KEY_ALIAS=${{ secrets.KEY_ALIAS }}
+          MY_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
+          EOF
+          ./gradlew assembleRelease --no-daemon
+      - name: Upload release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: trustdata-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
